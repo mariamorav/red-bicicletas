@@ -1,0 +1,113 @@
+extends layout
+
+block content
+  container#page-top
+  nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3
+    .container
+      a.navbar-brand.js-scroll-trigger(href='#page-top') 
+      button.navbar-toggler.navbar-toggler-right(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarResponsive.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto.my-2.my-lg-0
+          li.nav-item
+            a.nav-link.js-scroll-trigger(href='#about') Acerca de
+          li.nav-item
+            a.nav-link.js-scroll-trigger(href='#portfolio') Bicicletas
+          li.nav-item
+            a.nav-link.js-scroll-trigger(href='#contact') Contacto
+  // Masthead
+  header.masthead
+    .container.h-100
+      .row.h-100.align-items-center.justify-content-center.text-center
+        .col-lg-10.align-self-end
+          h1.text-uppercase.text-white.font-weight-bold Red de Bicicletas
+          hr.divider.my-4
+        .col-lg-8.align-self-baseline
+          p.text-white-75.font-weight-light.mb-5
+            | Únete a la comunidad de ciclistas más grande de LATAM.
+          a.btn.btn-primary.btn-xl.js-scroll-trigger(href='#about') Descubre más
+  // About
+  section#about.page-section.bg-primary
+    .container
+      .row.justify-content-center
+        .col-lg-8.text-center
+          h2.text-white.mt-0 Nuestra Comunidad
+          hr.divider.light.my-4
+          p.text-white-50.mb-4
+            | Somos ciclistas apasionados por recorrer de manera ecoamigable cada lugar del planeta.
+          a.btn.btn-light.btn-xl.js-scroll-trigger(href='#services') Únete
+  // Portfolio
+  #portfolio
+    .container-fluid.p-0
+      .row.no-gutters
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/1.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/1.jpg' alt='')
+            .portfolio-box-caption
+              .project-category.text-white-50 Category
+              .project-name Project Name
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/2.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/2.jpg' alt='')
+            .portfolio-box-caption
+              .project-category.text-white-50 Category
+              .project-name Project Name
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/3.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/3.jpg' alt='')
+            .portfolio-box-caption
+              .project-category.text-white-50 Category
+              .project-name Project Name
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/4.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/4.jpg' alt='')
+            .portfolio-box-caption
+              .project-category.text-white-50 Category
+              .project-name Project Name
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/5.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/5.jpg' alt='')
+            .portfolio-box-caption
+              .project-category.text-white-50 Category
+              .project-name Project Name
+        .col-lg-4.col-sm-6
+          a.portfolio-box(href='/assets/img/portfolio/fullsize/6.jpg')
+            img.img-fluid(src='/assets/img/portfolio/thumbnails/6.jpg' alt='')
+            .portfolio-box-caption.p-3
+              .project-category.text-white-50 Category
+              .project-name Project Name
+  // Call to action
+  section.page-section.bg-dark.text-white
+    .container.text-center
+      h2.mb-4 Encuentra tu ruta
+      #main_map
+  // Contact
+  section#contact.page-section
+    .container
+      .row.justify-content-center
+        .col-lg-8.text-center
+          h2.mt-0 Mantengamonos en contacto!
+          hr.divider.my-4
+          p.text-muted.mb-5
+            | Listo para empezar? Envíanos un mail y te responderemos lo más pronto posible!
+      .row
+        .col-lg-4.ml-auto.text-center.mb-5.mb-lg-0
+          i.fas.fa-phone.fa-3x.mb-3.text-muted
+          div +57 (320) 123-4567
+        .col-lg-4.mr-auto.text-center
+          i.fas.fa-envelope.fa-3x.mb-3.text-muted
+          // Make sure to change the email address in BOTH the anchor text and the link target below!
+          a.d-block(href='mailto:contact@yourwebsite.com') contacto@redbicicletas.com
+  // Footer
+  footer.bg-light.py-5
+    .container
+      .small.text-center.text-muted Copyright &copy; 2020 - red Bicicletas
+  // Bootstrap core JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js')
+  // Third party plugin JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js')
+  // Core theme JS
+  script(src='/javascripts/scripts.js')
+  script(src='/javascripts/map.js')
