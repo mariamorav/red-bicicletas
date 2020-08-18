@@ -29,7 +29,7 @@ module.exports = {
     create: function (req, res, next) {
         if (req.body.password != req.body.confirm_password) {
           res.render('usuarios/create', {errors: {confirm_password: {message: 'No coinciden las contraseñas'}}, usuario: new Usuario({nombre: req.body.nombre, email: req.body.email })});
-            return;
+          return;
         } 
 
         Usuario.create({nombre: req.body.nombre, email: req.body.email, password: req.body.password}, function(err, nuevoUsuario) {
@@ -40,7 +40,6 @@ module.exports = {
                 res.redirect('/usuarios');
             }
         });
-        next();
     },
     delete: function(req,res, next) {
         Usuario.findByIdAndDelete(req.body.id, function(err){

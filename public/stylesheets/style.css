@@ -5,3 +5,8 @@
     width: 80vw;
     margin-top: 1em;
 }
+
+body {
+    padding: 50px;
+    padding-top: 5em;
+}

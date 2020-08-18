@@ -87,4 +87,25 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
     });
 }
 
+usuarioSchema.methods.resetPassword = function(cb){
+    const token = new Token({_userID: this.id, token: crypto.randomBytes(16).toString('hex')});
+    const email_destination = this.email;
+    token.save(function(err){
+        if(err){ return cb(err); }
+        const mailOptions = {
+            from: 'no-reply@redBicicletas.com',
+            to: email_destination,
+            subject: 'Reseteo del password de tu cuenta',
+            text: 'Hola,\n\n' + 'Por favor, para resetear el password de su cuenta haga click en el sigueinte link:\n' + 'http://localhost:5000' + '\/resetPassword\/' + token.token
+        };
+
+        mailer.sendMail(mailOptions, function(err){
+            if(err){ return cb(err); }
+            console.log('Se envio un email para resetear el password a: ' + email_destination + '.');
+        });
+
+        cb(null);
+    })
+}
+
 module.exports = mongoose.model('Usuario', usuarioSchema);
