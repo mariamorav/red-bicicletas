@@ -1,8 +1,7 @@
-var mongoose = require("mongoose");
-var Bicicleta = require("../../models/bicicleta");
-var request = require("request");
-var server = require("../../bin/www");
-const { base } = require("../../models/bicicleta");
+const mongoose = require("mongoose");
+const Bicicleta = require("../../models/bicicleta");
+const request = require("request");
+const server = require("../../bin/www");
 
 var base_url = "http://localhost:5000/api/bicicletas";
 
