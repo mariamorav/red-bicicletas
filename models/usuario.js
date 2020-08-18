@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const Reserva = require('./reserva');
-const uniqueValidator = require ('mongoose-unique-validator');
+const Token = require('../models/token');
+const mailer = require('../mailer/mailer');
 
+const uniqueValidator = require ('mongoose-unique-validator');
+const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
 
 const Schema = mongoose.Schema;
 
 const validateEmail = function(email) {
-    const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    const re = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
     return re.test(email);
 };
 
@@ -25,7 +29,7 @@ const usuarioSchema = new Schema ({
         lowercase: true,
         unique: true,
         validate: [validateEmail, 'Por favor, ingrese un email valido'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
+        match: [/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i]
     },
     password: {
         type: String,
@@ -59,5 +63,28 @@ usuarioSchema.methods.reservar = function(biciId, desde, hasta, cb){
     console.log(reserva);
     reserva.save(cb);
 };
+
+
+//metodos para el manejo de mails
+
+usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
+    const token = new Token ({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
+    const email_destination = this.email;
+    token.save(function (err) {
+        if (err) {return console.log(err.message)}
+
+        const mailOptions = {
+            from: 'no-reply@redBicicletas.com',
+            to: email_destination,
+            subject: 'Bienvenido/a',
+            text: 'Hola, \n\n' + 'Por favor haz click en el siguiente enlace para verificar tu cuenta. \n'+`http://localhost:5000`+'\/token/confirm\/'+token.token+'.\n'
+        };
+
+        mailer.sendMail(mailOptions, function(err){
+            if (err) {return console.log(err.message); }
+            console.log('A verification mail has been sent to ' + email_destination + '.');
+        });
+    });
+}
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
