@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('./config/passport');
+var session = require('express-session');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,7 +15,18 @@ var usuariosAPIRouter = require('./routes/api/usuarios');
 var usuariosRouter = require('./routes/usuarios');
 var tokenRouter = require('./routes/token');
 
+var store = new session.MemoryStore; //guarda la sesion en memoria
+
+
 var app = express();
+app.use(session({
+  cookie: {maxAge: 240 * 60 * 60 * 1000 },
+  store: store,
+  saveUninitialized: true,
+  resave: 'true',
+  secret: 'asP23faqwrDRqasd23qQWE3fdsE'
+}))
+
 
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost/red_bicicletas';
@@ -29,6 +43,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
