@@ -8,10 +8,16 @@ exports.usuarios_list = function(req, res){
     });
 };
 
+exports.create_get = function(req, res, next) {
+    res.render('usuarios/create', {errors: {}, usuario: new Usuario()});
+}
 exports.usuarios_create = function(req, res){
-    var usuario = new Usuario({nombre: req.body.nombre});
+    var usuario = new Usuario({nombre: req.body.nombre, email: req.body.email, password: req.body.password});
 
     usuario.save(function(err){
+        if(err){
+            res.status(500).json(err);
+        }
         res.status(200).json(usuario);
     });
 
