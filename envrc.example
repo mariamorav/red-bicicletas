@@ -1,2 +1,5 @@
 export MONGO_URI=<your_mongo_uri>
 export NODE_ENV=<devorprod>
+export SENDGRID_API_SECRET_KEY=<api_key>
+export ETHEREAL_USER=<ethereal_user>
+export ETHEREAL_PASS=<etheral_pass>
