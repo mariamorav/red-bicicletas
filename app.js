@@ -14,10 +14,10 @@ const Token = require('./models/token');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const bicicletasRouter = require('./routes/bicicletas');
-const bicicletasAPIRouter = require('./routes/api/bicicletas');
-const usuariosAPIRouter = require('./routes/api/usuarios');
 const usuariosRouter = require('./routes/usuarios');
 const tokenRouter = require('./routes/token');
+const bicicletasAPIRouter = require('./routes/api/bicicletas');
+const usuariosAPIRouter = require('./routes/api/usuarios');
 const authAPIRouter = require('./routes/api/auth');
 
 
@@ -39,8 +39,8 @@ app.use(session({
 
 var mongoose = require('mongoose');
 const authControllerAPI = require('./controllers/api/authControllerAPI');
-var mongoDB = 'mongodb://localhost/red_bicicletas';
-mongoose.connect(mongoDB, {useNewUrlParser: true});
+var mongoDB = process.env.MONGO_URI;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongoDB connection error: '));
