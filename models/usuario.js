@@ -77,7 +77,7 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
             from: 'no-reply@redBicicletas.com',
             to: email_destination,
             subject: 'Bienvenido/a',
-            text: 'Hola, \n\n' + 'Por favor haz click en el siguiente enlace para verificar tu cuenta. \n'+`http://localhost:5000`+'\/token/confirm\/'+token.token+'.\n'
+            text: 'Hola, \n\n' + 'Por favor haz click en el siguiente enlace para verificar tu cuenta. \n'+`http://localhost:5000`+'\/token/confirm\/'+token.token+'\n'
         };
 
         mailer.sendMail(mailOptions, function(err){
