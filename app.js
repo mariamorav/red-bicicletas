@@ -36,11 +36,6 @@ app.use(session({
   secret: 'asP23faqwrDRqasd23qQWE3fdsE'
 }))
 
-app.use('/privacy_policy', function(req, res) {
-
-  res.sendFile('public/politica_privacidad.html');
-
-})
 
 var mongoose = require('mongoose');
 const authControllerAPI = require('./controllers/api/authControllerAPI');
@@ -137,6 +132,18 @@ app.use('/bicicletas', bicicletasRouter);
 app.use('/api/auth', authAPIRouter);
 app.use('/api/bicicletas', validarUsuario,bicicletasAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
+
+app.use('/privacy_policy', function(req, res) {
+
+  res.sendFile('public/politica_privacidad.html');
+
+});
+
+app.use('/google37d0834a85dac0dd', function(req, res) {
+
+  res.sendFile('public/google37d0834a85dac0dd.html');
+
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
