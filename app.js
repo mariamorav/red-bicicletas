@@ -36,6 +36,11 @@ app.use(session({
   secret: 'asP23faqwrDRqasd23qQWE3fdsE'
 }))
 
+app.use('/privacy_policy', function(req, res) {
+
+  res.sendFile('public/politica_privacidad.html');
+
+})
 
 var mongoose = require('mongoose');
 const authControllerAPI = require('./controllers/api/authControllerAPI');
