@@ -18,15 +18,15 @@ body#LoginForm
               = info.message
           h2 Admin Login
           p Por favor, ingrese su email y password
-        form#Login(action='/login' method='post')
+        form#Login(action='/api/session/login' method='post')
           .form-group
             input#username.form-control(type='email' placeholder='Email Address' name="username")
           .form-group
             input#password.form-control(type='password' placeholder='Password' name="password")
           .forgot
-            a(href='/forgotPassword') Olvide mi contraseña
+            a(href='/session/forgotPassword') Olvidé mi contraseña
             br
             br
-            a(href='/auth/google') Login con Google
+            a(href='/auth/google') Login in with Google
 
           button.btn.btn-primary(type='submit') Login
