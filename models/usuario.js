@@ -111,7 +111,7 @@ usuarioSchema.methods.enviar_email_bienvenida = function (cb) {
 
 usuarioSchema.methods.resetPassword = function (cb) {
     const token = new Token({
-        _userID: this.id,
+        _userId: this.id,
         token: crypto.randomBytes(16).toString("hex"),
     });
     const email_destination = this.email;
@@ -201,7 +201,7 @@ usuarioSchema.statics.findOneOrCreateByFacebook = function findOneOrCreateByFace
                 let values = {};
                 values.facebookId = condition.id;
                 values.email = condition.emails[0].value;
-                values.name = condition.displayName || "Sin nombre";
+                values.nombre = condition.displayName || "Sin nombre";
                 values.validated = true;
                 values.password = crypto.randomBytes(16).toString("hex");
                 console.log("--------- Values --------------");
